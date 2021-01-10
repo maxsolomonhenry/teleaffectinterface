@@ -1,70 +1,70 @@
-		body{
-			font-family: Arial;
-		}
+    body{
+      font-family: Arial;
+    }
 
-		.wrapper{
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			/*grid-auto-rows:minmax(10px, auto);*/
-		}
+    .wrapper{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      /*grid-auto-rows:minmax(10px, auto);*/
+    }
 
-		.screen{
-			display: grid;
-			border:blue 1px dashed;
-			padding: 0.5em;
-			grid-template-rows: 1fr 2fr 1fr;
-			align-content: center;
-		}
+    .screen{
+      display: grid;
+      border:blue 1px dashed;
+      padding: 0.5em;
+      grid-template-rows: 1fr 2fr 1fr;
+      align-content: center;
+    }
 
-		.input{
-			display: grid;
-			/*grid-gap: 0.5em;*/
-			grid-template-rows: 1fr 2fr 1fr;
-		}
+    .input{
+      display: grid;
+      /*grid-gap: 0.5em;*/
+      grid-template-rows: 1fr 2fr 1fr;
+    }
 
-		.prompt{
-			display: flex;
-			font-size: 1em;
-			vertical-align: baseline;
-		}
+    .prompt{
+      display: flex;
+      font-size: 1em;
+      vertical-align: baseline;
+    }
 
-		.btn{
-			padding: 0.6em 1.3em;
-			position: center;
-		}
+    .btn{
+      padding: 0.6em 1.3em;
+      position: center;
+    }
 
-		.prompt > span {
-			align-self: flex-end;
-		}
+    .prompt > span {
+      align-self: flex-end;
+    }
 
-		.wrapper > div {
-			background: #eee;
-			padding: 0.5em;
-		}
-		.wrapper > div:nth-child(odd){
-			background: #ddd;
-		}
+    .wrapper > div {
+      background: #eee;
+      padding: 0.5em;
+    }
+    .wrapper > div:nth-child(odd){
+      background: #ddd;
+    }
 
-		.input > div {
-			/*border: blue 1px dashed;*/
-			padding: 0.5em;
-		}
+    .input > div {
+      /*border: blue 1px dashed;*/
+      padding: 0.5em;
+    }
 
-		.screen > div {
-			/*border: blue 1px dashed;*/
-			padding: 0.5em;
-		}
+    .screen > div {
+      /*border: blue 1px dashed;*/
+      padding: 0.5em;
+    }
 
-		#textin{
-			resize: none;
-			border: dashed 1px blue;
-			background:#eee;
-			width: 100%;
-			height: 100%;
-			font-family: arial;
-			box-sizing: border-box;
-		}
+    #textin{
+      resize: none;
+      border: dashed 1px blue;
+      background:#eee;
+      width: 100%;
+      height: 100%;
+      font-family: arial;
+      box-sizing: border-box;
+    }
 
-		#player{
-			width:100%;
-		}
+    #player{
+      width:100%;
+    }

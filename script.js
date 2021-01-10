@@ -1,9 +1,9 @@
 // Can come from external file I guess?
 let listOfVids = 
-				[
-					"https://archive.org/download/CEP146/CEP146_512kb.mp4",
-					"https://archive.org/download/SF121/SF121_512kb.mp4"
-				]
+        [
+          "https://archive.org/download/CEP146/CEP146_512kb.mp4",
+          "https://archive.org/download/SF121/SF121_512kb.mp4"
+        ]
 
 // Don't know if there's a more appropriate approach, scope-wise.
 let videoIndex = 0;
@@ -11,89 +11,96 @@ let data = [];
 
 window.onload = () => 
 {
-	nextTrial();
+  nextTrial();
 }
 
 document.onkeydown = (e) => 
 {
-	/* Space -> play/pause. Behaviour is a bit odd to control. */
+  /* Space -> play/pause. Behaviour is a bit odd to control. */
 
-	if (e.keyCode == 32)
-	{
-		e.preventDefault();
-		// playPause();
-	}
+  let focus = document.activeElement.id;
+
+  if (e.keyCode == 32)
+  {
+    // Prevent scrolling on spacebar.
+    if (focus != "textin" && focus != "player")
+    {
+      console.log('here');
+      e.preventDefault();
+      playPause();
+    }
+  }
 }
 
 function playPause()
 {
-	let player = document.getElementById("player");
-	if (player.paused)
-	{
-		player.play();
-	}
-	else
-	{
-		player.pause();
-	}
+  let player = document.getElementById("player");
+  if (player.paused)
+  {
+    player.play();
+  }
+  else
+  {
+    player.pause();
+  }
 }
 
 function nextButton() 
 {
-	// Collects input in "data" variable.
+  // Collects input in "data" variable.
 
-	let rawTags = document.getElementById("textin").value;
+  let rawTags = document.getElementById("textin").value;
 
-	if (rawTags) 
-	{
-		let datum = { 
-			video 	: 	getVideo(),
-			tags  	: 	parseTags(rawTags),
-		}
+  if (rawTags) 
+  {
+    let datum = { 
+      video   :   getVideo(),
+      tags    :   parseTags(rawTags),
+    }
 
-		data.push(datum);
-		clearTextArea();
-		nextTrial();
-	}
-	else
-	{
-		alert("Please enter tags in the text box before proceeding.");
-	}
+    data.push(datum);
+    clearTextArea();
+    nextTrial();
+  }
+  else
+  {
+    alert("Please enter tags in the text box before proceeding.");
+  }
 
 }
 
 function getVideo ()
 {
-	return document.getElementById("player").src;
+  return document.getElementById("player").src;
 }
 
 function nextTrial ()
 {
-	document.getElementById("player").src = nextVideo();
+  document.getElementById("player").src = nextVideo();
 }
 
 function nextVideo ()
 {
-	if (videoIndex === listOfVids.length)
-	{
-		alert("Reached end of video list.");
+  if (videoIndex === listOfVids.length)
+  {
+    alert("Reached end of video list.");
 
-		// Debugging.
-		console.log(data);
-	}
-	else 
-	{
-		return listOfVids[videoIndex++];
-	}
+    // Debugging.
+    console.log(data);
+  }
+  else 
+  {
+    return listOfVids[videoIndex++];
+  }
 }
 
 function parseTags(rawTags)
 {
-	return rawTags.split(",");
+  return rawTags.split(",");
 }
 
 
 function clearTextArea()
 {
-	document.getElementById("textin").value = "";
+  document.getElementById("textin").value = "";
 }
