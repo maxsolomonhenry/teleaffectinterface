@@ -1,25 +1,29 @@
-/*
-
-  TODO:   -routing.
-            e.g., [elementid].style.display = "none" / "block"
-          -switching between types of data.
-
-*/
-
-
-
 // Can come from external file I guess?
-let listOfVids = 
+let listOfTrials = 
         [
-          "https://archive.org/download/CEP146/CEP146_512kb.mp4",
-          "https://archive.org/download/SF121/SF121_512kb.mp4"
+          {
+            'source': "https://archive.org/download/CEP146/CEP146_512kb.mp4",
+            'type'  : "text"
+          },
+          {
+            'source': "https://archive.org/download/SF121/SF121_512kb.mp4",
+            'type'  : "text"
+          },
+          {
+            'source': "https://archive.org/download/CEP146/CEP146_512kb.mp4",
+            'type'  : "grid"
+          },
+          {
+            'source': "https://archive.org/download/SF121/SF121_512kb.mp4",
+            'type'  : "grid"
+          }
         ]
 
 
 
 let canvasHolder;
-let videoIndex;
-let data;
+let trialIndex;
+let subjectData;
 
 let isDrawing = false;
 let time_series;
@@ -32,13 +36,14 @@ window.onload = () =>
   clearInputs(); // Clear text field and time series.
   setupCanvas();
   setupSpacebar();
-  nextTrial();
+
+  setupTrial();
 }
 
 function initGlobals()
 {
-  data = [];
-  videoIndex = 0;
+  subjectData = [];
+  trialIndex = 0;
 }
 
 
@@ -70,7 +75,7 @@ function reportXY()
     let vidTime = document.getElementById('player').currentTime;
     let datum = {'t': vidTime, 'x': reportX, 'y': reportY};
 
-
+    console.log('Datum registered:')
     console.log(datum);
     time_series.push(datum);
   }
@@ -122,7 +127,7 @@ function playPause()
 
 function nextButton() 
 {
-  // Collects input in "data" variable.
+  // Collects input in "subjectData" variable.
 
   let datum = {"condition" : getVideo()}
   let rawTags = document.getElementById("textin").value;
@@ -132,12 +137,12 @@ function nextButton()
     if (rawTags) datum["tags"] = parseTags(rawTags);
     if (time_series.length > 0) datum["time_series"] = time_series;
 
-    data.push(datum);
+    subjectData.push(datum);
 
     // Debugging.
-    console.log(data);
+    console.log("Total data so far:");
+    console.log(subjectData);
 
-    clearInputs();
     nextTrial();
   }
   else
@@ -171,22 +176,68 @@ function clearInputs()
 
 function nextTrial ()
 {
-  document.getElementById("player").src = nextVideo();
-}
+  trialIndex++;
 
-
-
-function nextVideo ()
-{
-  if (videoIndex === listOfVids.length)
+  if (trialIndex === listOfTrials.length)
   {
     alert("Reached end of video list.");
 
     // Debugging.
-    console.log(data);
+    console.log("Final data:");
+    console.log(subjectData);
   }
   else 
   {
-    return listOfVids[videoIndex++];
+    setupTrial();
+  };
+}
+
+function setupTrial()
+{
+    clearInputs();
+    updateLayout( getTrialType() );
+    updateVideo( getTrialVideo() );
+}
+
+
+function updateLayout(trialType)
+{
+  let textin = document.getElementById("textin");
+  let prompt = document.getElementById("prompt");
+
+  if (trialType == "text")
+  {
+    textin.style.display = "block";
+    canvasHolder.style.display = "none";
+
+    prompt.textContent =  "Describe what you think the audience is feeling using tags. " +
+                          "Separate tags with a\xa0\",\"\xa0(e.g., \"happy, sad\"):"
   }
+  else if (trialType == "grid")
+  {
+    textin.style.display = "none";
+    canvasHolder.style.display = "block";
+
+    prompt.textContent = "Click and point on the canvas to indicate how you feel."
+  }
+  else
+  {
+    throw "Unknown trial type";
+  }
+}
+
+function updateVideo(source)
+{
+  document.getElementById("player").src = source;
+}
+
+
+function getTrialVideo()
+{
+  return listOfTrials[trialIndex]["source"];
+}
+
+function getTrialType()
+{
+  return listOfTrials[trialIndex]["type"];
 }

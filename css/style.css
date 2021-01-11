@@ -22,12 +22,6 @@
       grid-template-rows: 100px 400px 100px;
     }
 
-    .prompt{
-      display: flex;
-      font-size: 1em;
-      vertical-align: baseline;
-    }
-
     .btn{
       padding: 0.6em 1.3em;
       position: center;
@@ -63,6 +57,16 @@
       height: 100%;
       font-family: arial;
       box-sizing: border-box;
+    }
+
+    #prompt-holder{
+      position: relative;
+    }
+
+    #prompt{
+      position: absolute;
+      bottom: 0;
+      right: 0;
     }
 
     #player{

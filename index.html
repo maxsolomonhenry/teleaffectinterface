@@ -15,7 +15,7 @@
 
     <div class="screen">
 
-      <div class="prompt"></div>
+      <div></div>
       <div><video id="player" src="" controls></video></div>
       <div class="bigprompt"><p>Press <b>space</b> to start/stop video.</p></div>
 
@@ -23,11 +23,13 @@
 
     <div class="input">
 
-      <div class="prompt"><span>Click and point on the canvas to indicate how you feel.</span></div>
+      <div id="prompt-holder"><span id="prompt"></span></div>
+
       <div>
         <div id="canvas-holder" onmousemove="reportXY()"></div>
         <textarea id="textin" placeholder="Input text here." style="display:none"></textarea>
       </div>
+
       <div><button type="submit" class="btn" onclick="nextButton()">Next</button></div>
 
     </div>
