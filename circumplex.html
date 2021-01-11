@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Teleconferencing Affect Experiment</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
+  <script src="js/sketch.js"></script>
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <div class="screen">
+
+      <div class="prompt"></div>
+      <div><video id="player" src="" controls></video></div>
+      <div class="bigprompt"><p>Press <b>space</b> to start/stop video.</p></div>
+
+    </div>
+
+    <div class="input">
+
+      <div class="prompt"><span>Click and point on the canvas to indicate how you feel.</span></div>
+      <div id="canvas-holder" onmousemove="reportXY()"></div>
+      <div><button type="submit" class="btn" onclick="nextButton()">Next</button></div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -8,9 +8,25 @@ let listOfVids =
 // Don't know if there's a more appropriate approach, scope-wise.
 let videoIndex = 0;
 let data = [];
+let canvasHolder;
+let isDrawing = false;
 
 window.onload = () => 
 {
+  canvasHolder = document.getElementById('canvas-holder');
+  canvasHolder.addEventListener('mousedown', e => 
+  {
+    // TODO: move this.
+    let datum = {'x': reportX, 'y': reportY};
+    console.log(datum);
+    isDrawing = true;
+  });
+
+canvasHolder.addEventListener('mouseup', e => 
+{
+    isDrawing = false;
+  });
+
   nextTrial();
 }
 
@@ -25,10 +41,19 @@ document.onkeydown = (e) =>
     // Prevent scrolling on spacebar.
     if (focus != "textin" && focus != "player")
     {
-      console.log('here');
       e.preventDefault();
       playPause();
     }
+  }
+}
+
+function reportXY()
+{
+  // Reporting XY position in canvas.
+  if (isDrawing)
+  {
+    let datum = {'x': reportX, 'y': reportY};
+    console.log(datum);
   }
 }
 
@@ -54,8 +79,8 @@ function nextButton()
   if (rawTags) 
   {
     let datum = { 
-      video   :   getVideo(),
-      tags    :   parseTags(rawTags),
+      condition : getVideo(),
+      tags      : parseTags(rawTags),
     }
 
     data.push(datum);
