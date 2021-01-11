@@ -4,11 +4,10 @@ Html interface for teleaffect experiment. Exciting stuff.
 .
 ├── LICENSE
 ├── README.md
-├── circumplex.html  --> 2d grid for valence/arousal input (p5).
+├── index.html       --> tha main show.
 ├── css
 │   └── style.css
 ├── js
 │   ├── script.js
 │   └── sketch.js
-└── tags.html        --> textarea for text based tag input
-```
+└── tags.html        --> [old] text tags only.
