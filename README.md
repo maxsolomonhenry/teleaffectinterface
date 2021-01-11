@@ -4,10 +4,9 @@ Html interface for teleaffect experiment. Exciting stuff.
 .
 ├── LICENSE
 ├── README.md
-├── index.html       --> tha main show.
+├── index.html       --> experimental interface.
 ├── css
 │   └── style.css
-├── js
-│   ├── script.js
-│   └── sketch.js
-└── tags.html        --> [old] text tags only.
+└── js
+    ├── script.js    --> main script.
+    └── sketch.js    --> p5 for circumplex input.
