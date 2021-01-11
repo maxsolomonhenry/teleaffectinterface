@@ -24,7 +24,10 @@
     <div class="input">
 
       <div class="prompt"><span>Click and point on the canvas to indicate how you feel.</span></div>
-      <div id="canvas-holder" onmousemove="reportXY()"></div>
+      <div>
+        <div id="canvas-holder" onmousemove="reportXY()"></div>
+        <textarea id="textin" placeholder="Input text here." style="display:none"></textarea>
+      </div>
       <div><button type="submit" class="btn" onclick="nextButton()">Next</button></div>
 
     </div>

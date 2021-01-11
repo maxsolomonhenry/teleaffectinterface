@@ -1,3 +1,13 @@
+/*
+
+  TODO:   -routing.
+            e.g., [elementid].style.display = "none" / "block"
+          -switching between types of data.
+
+*/
+
+
+
 // Can come from external file I guess?
 let listOfVids = 
         [
@@ -5,57 +15,91 @@ let listOfVids =
           "https://archive.org/download/SF121/SF121_512kb.mp4"
         ]
 
-// Don't know if there's a more appropriate approach, scope-wise.
-let videoIndex = 0;
-let data = [];
+
+
 let canvasHolder;
+let videoIndex;
+let data;
+
 let isDrawing = false;
+let time_series;
+
+
 
 window.onload = () => 
+{
+  initGlobals();
+  clearInputs(); // Clear text field and time series.
+  setupCanvas();
+  setupSpacebar();
+  nextTrial();
+}
+
+function initGlobals()
+{
+  data = [];
+  videoIndex = 0;
+}
+
+
+
+// =================== 2d IO stuff ====================
+
+function setupCanvas()
 {
   canvasHolder = document.getElementById('canvas-holder');
   canvasHolder.addEventListener('mousedown', e => 
   {
-    // TODO: move this.
-    let datum = {'x': reportX, 'y': reportY};
-    console.log(datum);
     isDrawing = true;
+    reportXY();
   });
 
-canvasHolder.addEventListener('mouseup', e => 
-{
-    isDrawing = false;
-  });
-
-  nextTrial();
-}
-
-document.onkeydown = (e) => 
-{
-  /* Space -> play/pause. Behaviour is a bit odd to control. */
-
-  let focus = document.activeElement.id;
-
-  if (e.keyCode == 32)
+  canvasHolder.addEventListener('mouseup', e => 
   {
-    // Prevent scrolling on spacebar.
-    if (focus != "textin" && focus != "player")
-    {
-      e.preventDefault();
-      playPause();
-    }
-  }
+      isDrawing = false;
+    });
 }
+
+
 
 function reportXY()
 {
   // Reporting XY position in canvas.
   if (isDrawing)
   {
-    let datum = {'x': reportX, 'y': reportY};
+    let vidTime = document.getElementById('player').currentTime;
+    let datum = {'t': vidTime, 'x': reportX, 'y': reportY};
+
+
     console.log(datum);
+    time_series.push(datum);
   }
 }
+
+
+
+// ================ Spacebar behaviour ================
+
+function setupSpacebar()
+{
+  document.onkeydown = (e) => 
+  {
+
+    let focus = document.activeElement.id;
+
+    if (e.keyCode == 32)
+    {
+      if (focus != "textin" && focus != "player")
+      {
+        // Prevent scrolling.
+        e.preventDefault();
+        playPause();
+      }
+    }
+  }
+}
+
+
 
 function playPause()
 {
@@ -70,39 +114,67 @@ function playPause()
   }
 }
 
+
+
+
+
+// =========== Saving data and advancing trial ===========
+
 function nextButton() 
 {
   // Collects input in "data" variable.
 
+  let datum = {"condition" : getVideo()}
   let rawTags = document.getElementById("textin").value;
 
-  if (rawTags) 
+  if (rawTags || time_series.length > 0) 
   {
-    let datum = { 
-      condition : getVideo(),
-      tags      : parseTags(rawTags),
-    }
+    if (rawTags) datum["tags"] = parseTags(rawTags);
+    if (time_series.length > 0) datum["time_series"] = time_series;
 
     data.push(datum);
-    clearTextArea();
+
+    // Debugging.
+    console.log(data);
+
+    clearInputs();
     nextTrial();
   }
   else
   {
-    alert("Please enter tags in the text box before proceeding.");
+    alert("Please enter input before proceeding.");
   }
 
 }
+
+
 
 function getVideo ()
 {
   return document.getElementById("player").src;
 }
 
+
+
+function parseTags(rawTags)
+{
+  return rawTags.split(",");
+}
+
+
+
+function clearInputs()
+{
+  document.getElementById("textin").value = "";
+  time_series = [];
+}
+
 function nextTrial ()
 {
   document.getElementById("player").src = nextVideo();
 }
+
+
 
 function nextVideo ()
 {
@@ -117,15 +189,4 @@ function nextVideo ()
   {
     return listOfVids[videoIndex++];
   }
-}
-
-function parseTags(rawTags)
-{
-  return rawTags.split(",");
-}
-
-
-function clearTextArea()
-{
-  document.getElementById("textin").value = "";
 }
