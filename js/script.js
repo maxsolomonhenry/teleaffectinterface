@@ -143,6 +143,7 @@ function nextButton()
     console.log("Total data so far:");
     console.log(subjectData);
 
+    this.blur();
     nextTrial();
   }
   else

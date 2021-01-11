@@ -10,7 +10,7 @@
 
     .screen{
       display: grid;
-      border:blue 1px dashed;
+      border-right:blue 1px dashed;
       padding: 0.5em;
       grid-template-rows: 100px 400px 100px;
       align-content: center;
@@ -35,9 +35,9 @@
       background: #eee;
       padding: 0.5em;
     }
-    .wrapper > div:nth-child(odd){
+/*    .wrapper > div:nth-child(odd){
       background: #ddd;
-    }
+    }*/
 
     .input > div {
       /*border: blue 1px dashed;*/
@@ -51,10 +51,10 @@
 
     #textin{
       resize: none;
-      border: dashed 1px blue;
+      border: solid 1px blue;
       background:#eee;
       width: 100%;
-      height: 100%;
+      height: 90%;
       font-family: arial;
       box-sizing: border-box;
     }
@@ -66,7 +66,7 @@
     #prompt{
       position: absolute;
       bottom: 0;
-      right: 0;
+      left: 0;
     }
 
     #player{
