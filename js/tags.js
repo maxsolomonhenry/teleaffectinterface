@@ -6,8 +6,10 @@ var tags = [];
 function createTag(label) {
 	const div = document.createElement('div');
 	div.setAttribute('class', 'tag');
+
 	const span  = document.createElement('span');
 	span.innerHTML = label;
+	
 	const closeBtn  = document.createElement('i');
 	closeBtn.setAttribute('class', 'material-icons');
 	closeBtn.setAttribute('data-item', label);

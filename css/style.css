@@ -16,11 +16,11 @@
       align-content: center;
     }
 
-    .input{
+/*    .input{
       display: grid;
-      /*grid-gap: 0.5em;*/
+      background: #eee;
       grid-template-rows: 100px 400px 100px;
-    }
+    }*/
 
     .btn{
       padding: 0.6em 1.3em;
@@ -71,4 +71,8 @@
 
     #player{
       width:100%;
+    }
+
+    #canvas-holder{
+      text-align: center;
     }
