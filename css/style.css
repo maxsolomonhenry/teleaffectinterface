@@ -49,16 +49,6 @@
       padding: 0.5em;
     }
 
-/*    #textin{
-      resize: none;
-      border: solid 1px blue;
-      background:#eee;
-      width: 100%;
-      height: 90%;
-      font-family: arial;
-      box-sizing: border-box;
-    }*/
-
     #prompt-holder{
       position: relative;
     }

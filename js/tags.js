@@ -1,20 +1,26 @@
-const tagContainer = document.querySelector('.tag-container');
-const input = document.querySelector('.tag-container input');
+const tagContainer = document.querySelector('#tag-container');
+const input = document.querySelector('#tag-container input');
 
 var tags = [];
 
 function createTag(label) {
+	// Generates raw html for tags.
+
+	// Make the <div> that houses the new tag.
 	const div = document.createElement('div');
 	div.setAttribute('class', 'tag');
 
+	// Span houses the text of the tag.
 	const span  = document.createElement('span');
 	span.innerHTML = label;
-	
+
+	// Add the little 'x' for closing a tag.
 	const closeBtn  = document.createElement('i');
 	closeBtn.setAttribute('class', 'material-icons');
 	closeBtn.setAttribute('data-item', label);
 	closeBtn.innerHTML = 'close';
 
+	// Put tag text and button in the <div>.
 	div.appendChild(span);
 	div.appendChild(closeBtn);
 
@@ -30,8 +36,8 @@ function reset() {
 function addTags() {
 	reset();
 	tags.slice().reverse().forEach(function(tag) {
-		const input = createTag(tag);
-		tagContainer.prepend(input);
+		const newInput = createTag(tag);
+		tagContainer.prepend(newInput);
 	})
 }
 
