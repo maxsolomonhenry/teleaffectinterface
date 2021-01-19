@@ -65,3 +65,5 @@ function draw()
   rotate(-HALF_PI);
   text(yLabel, 0, 0);
 }
+
+export {reportX, reportY, setup, draw};

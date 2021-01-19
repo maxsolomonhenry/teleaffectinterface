@@ -1,3 +1,8 @@
+import {reportX, reportY, setup, draw} from './sketch.js';
+
+document.querySelector('.btn').addEventListener('click', nextButton);
+
+
 // Can come from external file I guess?
 let listOfTrials = 
         [
@@ -127,7 +132,7 @@ function playPause()
 
 // =========== Saving data and advancing trial ===========
 
-function nextButton() 
+export function nextButton() 
 {
   // Collects input in "subjectData" variable.
 
