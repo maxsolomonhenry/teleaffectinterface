@@ -24,7 +24,6 @@ function draw()
   background(204);
   
   // Grid.
-  
   let gridResolution = 20;
   strokeWeight(1);
   stroke(195);

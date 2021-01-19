@@ -33,7 +33,7 @@ let time_series;
 window.onload = () => 
 {
   initGlobals();
-  clearInputs(); // Clear text field and time series.
+  clearRecordedInputs(); // Clear text field and time series.
   setupCanvas();
   setupSpacebar();
 
@@ -130,12 +130,22 @@ function nextButton()
   // Collects input in "subjectData" variable.
 
   let datum = {"condition" : getVideo()}
-  let rawTags = document.getElementById("textin").value;
 
-  if (rawTags || time_series.length > 0) 
+  // `tags` comes from tags.js 
+
+  if (tags || time_series.length > 0) 
   {
-    if (rawTags) datum["tags"] = parseTags(rawTags);
-    if (time_series.length > 0) datum["time_series"] = time_series;
+    if (tags){
+      // Collect whatever was in the input field. `input` from tags.js
+      tags.push(input.value);
+
+      // Then add all tags to datum for this trial.
+      datum["tags"] = tags;
+    } 
+
+    if (time_series.length > 0){
+      datum["time_series"] = time_series;
+    }
 
     subjectData.push(datum);
 
@@ -143,7 +153,10 @@ function nextButton()
     console.log("Total data so far:");
     console.log(subjectData);
 
+    // De-focus the `next` button.
     this.blur();
+
+    // Move on.
     nextTrial();
   }
   else
@@ -162,16 +175,16 @@ function getVideo ()
 
 
 
-function parseTags(rawTags)
+// function parseTags(rawTags)
+// {
+//   return rawTags.split(",");
+// }
+
+
+
+function clearRecordedInputs()
 {
-  return rawTags.split(",");
-}
-
-
-
-function clearInputs()
-{
-  document.getElementById("textin").value = "";
+  tags = [];
   time_series = [];
 }
 
@@ -195,20 +208,31 @@ function nextTrial ()
 
 function setupTrial()
 {
-    clearInputs();
+    clearRecordedInputs();
+    clearTagField();
+
     updateLayout( getTrialType() );
     updateVideo( getTrialVideo() );
 }
 
 
+function clearTagField()
+{
+    // from tags.js, redraws empty input field.
+    addTags();
+
+    // (`input` from tags.js) clears any text sitting in the input field.
+    input.value = '';
+}
+
 function updateLayout(trialType)
 {
-  let textin = document.getElementById("textin");
+  let tagContainer = document.getElementById("tag-container");
   let prompt = document.getElementById("prompt");
 
   if (trialType == "text")
   {
-    textin.style.display = "block";
+    tagContainer.style.display = "block";
     canvasHolder.style.display = "none";
 
     prompt.textContent =  "Describe what you think the audience is feeling using tags. " +
@@ -216,7 +240,7 @@ function updateLayout(trialType)
   }
   else if (trialType == "grid")
   {
-    textin.style.display = "none";
+    tagContainer.style.display = "none";
     canvasHolder.style.display = "block";
 
     prompt.textContent = "Click and point on the canvas to indicate how you feel."
