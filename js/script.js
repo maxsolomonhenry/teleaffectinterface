@@ -56,13 +56,15 @@ function setupCanvas()
   canvasHolder.addEventListener('mousedown', e => 
   {
     isDrawing = true;
+    canvasHolder.style.cursor = 'none';
     reportXY();
   });
 
   canvasHolder.addEventListener('mouseup', e => 
   {
-      isDrawing = false;
-    });
+    canvasHolder.style.cursor = 'default';
+    isDrawing = false;
+  });
 }
 
 

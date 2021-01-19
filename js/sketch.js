@@ -1,9 +1,12 @@
-let canvasWidth = 300;
-let canvasHeight = 300;
+let canvasWidth = 350;
+let canvasHeight = 350;
 
 let crossSize = 10;
 let reportX = 0;
 let reportY = 0;
+
+let xLabel = 'pleasantness';
+let yLabel = 'arousal';
 
 function setup() 
 {
@@ -24,7 +27,7 @@ function draw()
   background(204);
   
   // Grid.
-  let gridResolution = 20;
+  let gridResolution = 10;
   strokeWeight(1);
   stroke(195);
 
@@ -37,8 +40,6 @@ function draw()
   stroke(150);
   line(0, canvasHeight/2, canvasWidth, canvasHeight/2);
   line(canvasWidth/2, 0, canvasWidth/2, canvasHeight);
-
-  // Crosshair.
 
   if (isDrawing)
   {
@@ -54,4 +55,13 @@ function draw()
   // Report centered, normalized values.
   reportX = (mouseX - (canvasWidth / 2)) / canvasWidth;
   reportY = (-(mouseY - (canvasHeight / 2))) / canvasHeight;
+
+  // Axis text.
+  stroke('black');
+  strokeWeight(1);
+  text(xLabel, 2/3 * canvasWidth, canvasHeight/2);
+
+  translate(canvasWidth/2, 1/3 * canvasHeight);
+  rotate(-HALF_PI);
+  text(yLabel, 0, 0);
 }
