@@ -16,11 +16,11 @@
       align-content: center;
     }
 
-/*    .input{
+    .input{
       display: grid;
       background: #eee;
       grid-template-rows: 100px 400px 100px;
-    }*/
+    }
 
     .btn{
       padding: 0.6em 1.3em;
@@ -49,7 +49,7 @@
       padding: 0.5em;
     }
 
-    #textin{
+/*    #textin{
       resize: none;
       border: solid 1px blue;
       background:#eee;
@@ -57,7 +57,7 @@
       height: 90%;
       font-family: arial;
       box-sizing: border-box;
-    }
+    }*/
 
     #prompt-holder{
       position: relative;
