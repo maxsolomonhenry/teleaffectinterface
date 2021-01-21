@@ -5,9 +5,6 @@ let crossSize = 10;
 let reportX = 0;
 let reportY = 0;
 
-let xLabel = 'pleasantness';
-let yLabel = 'arousal';
-
 function setup() 
 {
   var canvas = createCanvas(canvasWidth, canvasHeight);
@@ -43,25 +40,28 @@ function draw()
 
   if (isDrawing)
   {
-    drawX = mouseX;
-    drawY = mouseY;
+    drawX = Math.max(Math.min(canvasWidth, mouseX), 0);
+    drawY = Math.max(Math.min(canvasHeight, mouseY), 0);
   }
 
+
+  // Draw crosshair.
   stroke('red');
   strokeWeight(2);
   line(drawX - crossSize, drawY, drawX + crossSize, drawY);
   line(drawX, drawY - crossSize, drawX, drawY + crossSize);
 
   // Report centered, normalized values.
-  reportX = (mouseX - (canvasWidth / 2)) / canvasWidth;
-  reportY = (-(mouseY - (canvasHeight / 2))) / canvasHeight;
+  reportX = ((mouseX - (canvasWidth / 2)) / canvasWidth) * 2;
+  reportY = ((-(mouseY - (canvasHeight / 2))) / canvasHeight) * 2;
 
   // Axis text.
   stroke('black');
   strokeWeight(1);
-  text(xLabel, 2/3 * canvasWidth, canvasHeight/2);
 
-  translate(canvasWidth/2, 1/3 * canvasHeight);
-  rotate(-HALF_PI);
-  text(yLabel, 0, 0);
+  text('unpleasant', 15, canvasHeight/2);
+  text('pleasant', 5/6 * canvasWidth, canvasHeight/2);
+
+  text('deactivated', 53/128*canvasWidth, canvasHeight - 15);
+  text('activated', 7/16 * canvasWidth, 20);
 }

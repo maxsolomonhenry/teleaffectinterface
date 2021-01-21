@@ -135,7 +135,7 @@ function nextButton()
 
   // `tags` comes from tags.js 
 
-  if (tags || time_series.length > 0) 
+  if (input.value || tags.length > 0 || time_series.length > 0) 
   {
     if (tags){
       // Collect whatever was in the input field. `input` from tags.js
