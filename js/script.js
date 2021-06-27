@@ -111,13 +111,17 @@ function setupSpacebar()
 function playPause()
 {
   let player = document.getElementById("player");
+  let overlay = document.getElementById("overlay");
+
   if (player.paused)
   {
     player.play();
+    overlay.play();
   }
   else
   {
     player.pause();
+    overlay.pause();
   }
 }
 
