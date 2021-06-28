@@ -1,68 +1,81 @@
-    body{
-      font-family: Arial;
-    }
+body{
+  font-family: Arial;
+  overflow: hidden
+}
 
-    .wrapper{
-      display: grid;
-      grid-template-columns: 500px 500px;
-      /*grid-auto-rows:minmax(10px, auto);*/
-    }
+.wrapper{
+  display: grid;
+  grid-template-columns: 500px 500px;
+  /*grid-auto-rows:minmax(10px, auto);*/
+}
 
-    .screen{
-      display: grid;
-      border-right:blue 1px dashed;
-      padding: 0.5em;
-      grid-template-rows: 100px 400px 100px;
-      align-content: center;
-    }
+.screen{
+  display: grid;
+  border-right:blue 1px dashed;
+  padding: 0.5em;
+  grid-template-rows: 100px 400px 100px;
+  align-content: center;
+}
 
-    .input{
-      display: grid;
-      background: #eee;
-      grid-template-rows: 100px 400px 100px;
-    }
+.input{
+  display: grid;
+  background: #eee;
+  grid-template-rows: 100px 400px 100px;
+}
 
-    .btn{
-      padding: 0.6em 1.3em;
-      position: center;
-    }
+.btn{
+  padding: 0.6em 1.3em;
+  position: center;
+}
 
-    .prompt > span {
-      align-self: flex-end;
-    }
+.prompt > span {
+  align-self: flex-end;
+}
 
-    .wrapper > div {
-      background: #eee;
-      padding: 0.5em;
-    }
+.wrapper > div {
+  background: #eee;
+  padding: 0.5em;
+}
 /*    .wrapper > div:nth-child(odd){
-      background: #ddd;
-    }*/
+  background: #ddd;
+}*/
 
-    .input > div {
-      /*border: blue 1px dashed;*/
-      padding: 0.5em;
-    }
+.input > div {
+  /*border: blue 1px dashed;*/
+  padding: 0.5em;
+}
 
-    .screen > div {
-      /*border: blue 1px dashed;*/
-      padding: 0.5em;
-    }
+.screen > div {
+  /*border: blue 1px dashed;*/
+  padding: 0.5em;
+}
 
-    #prompt-holder{
-      position: relative;
-    }
+#prompt-holder{
+  position: relative;
+}
 
-    #prompt{
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
+#prompt{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
 
-    #player{
-      width:100%;
-    }
+#twovideos{
+  position: relative;
+}
 
-    #canvas-holder{
-      text-align: center;
-    }
+#player{
+  position: absolute;
+  height: 400px;
+  width: 400px;
+}
+
+#overlay{
+  position: absolute;
+  height: 400px;
+  width: 400px;
+}
+
+#canvas-holder{
+  text-align: center;
+}
