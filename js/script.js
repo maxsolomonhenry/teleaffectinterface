@@ -1,6 +1,9 @@
 let listOfTrials = 
         [
           {
+            'type'  : "id"
+          },
+          {
             'source': "https://archive.org/download/CEP146/CEP146_512kb.mp4",
             'type'  : "grid"
           },
@@ -120,14 +123,29 @@ function playPause()
 
 function nextButton() 
 {
+
+  // De-focus the `next` button.
+  thisEffingButton = document.getElementById("the-button");
+  thisEffingButton.blur();
+  // player.focus();
+
   // Collects input in "subjectData" variable.
 
   let datum = {"condition" : getVideo()}
+  let idtxt = document.getElementById("id-text");
 
   // `tags` comes from tags.js 
 
-  if (input.value || tags.length > 0 || time_series.length > 0) 
+  if (idtxt.value != "" || input.value || tags.length > 0 || time_series.length > 0) 
   {
+
+    if (idtxt.value != "") 
+    {
+      datum["PID"] = idtxt.value;
+      idtxt.value = "";
+      datum["condition"] = "ID_FIELD";
+    }
+
     if (tags){
       // Collect whatever was in the input field. `input` from tags.js
       tags.push(input.value);
@@ -145,9 +163,6 @@ function nextButton()
     // Debugging.
     console.log("Total data so far:");
     console.log(subjectData);
-
-    // De-focus the `next` button.
-    this.blur();
 
     // Move on.
     nextTrial();
@@ -187,7 +202,7 @@ function nextTrial ()
 
   if (trialIndex === listOfTrials.length)
   {
-    alert("Reached end of video list.");
+    alert("You have finished the experiment. Thank you!");
 
     // Debugging.
     console.log("Final data:");
@@ -222,19 +237,37 @@ function updateLayout(trialType)
 {
   let tagContainer = document.getElementById("tag-container");
   let prompt = document.getElementById("prompt");
+  let idContainer = document.getElementById("id-container");
+  let pressSpace = document.getElementById("press-space");
 
-  if (trialType == "text")
+  if (trialType == "id")
   {
+    player.style.display = "none";
+    idContainer.style.display = "block";
+    tagContainer.style.display = "none";
+    canvasHolder.style.display = "none";
+    pressSpace.style.display = "none";
+    
+    prompt.textContent =  "Please enter participant ID:"
+  }
+  else if (trialType == "text")
+  {
+    player.style.display = "block";
+    idContainer.style.display = "none";
     tagContainer.style.display = "block";
     canvasHolder.style.display = "none";
+    pressSpace.style.display = "block";
 
     prompt.textContent =  "Describe what you think the audience is feeling using tags. " +
                           "Separate tags with a\xa0\",\"\xa0(e.g., \"happy, sad\"):"
   }
   else if (trialType == "grid")
   {
+    player.style.display = "block";
+    idContainer.style.display = "none";
     tagContainer.style.display = "none";
     canvasHolder.style.display = "block";
+    pressSpace.style.display = "block";
 
     prompt.textContent = "Click and point on the canvas to indicate how you feel."
   }

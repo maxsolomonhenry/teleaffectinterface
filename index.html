@@ -6,7 +6,7 @@
   <title>Teleconferencing Affect Experiment</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/tags.css">
-  <script type="text/javascript" src="js/script.js"></script>
+  <script async type="text/javascript" src="js/script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
   <script src="js/sketch.js"></script>
   <script src="js/tags.js" defer></script>
@@ -20,7 +20,7 @@
 
       <div></div> 
       <div><video id="player" src="" controls></video></div>
-      <div class="bigprompt"><p>Press <b>space</b> to start/stop video.</p></div>
+      <div class="bigprompt" id="press-space"><p>Press <b>space</b> to start/stop video.</p></div>
 
     </div>
 
@@ -31,12 +31,11 @@
       <div>
 
         <div id="canvas-holder" onmousemove="reportXY()"></div>
-        <div id="tag-container">
-          <input id="textin"/>
-        </div>
+        <div id="tag-container"><input id="textin"/></div>
+        <div id="id-container"><input type="text" id="id-text"></div>
       </div>
 
-      <div><button type="submit" class="btn" onclick="nextButton()">Next</button></div>
+      <div><button type="submit" class="btn" id="the-button" onclick="nextButton()">Next</button></div>
 
     </div>
 
