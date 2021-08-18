@@ -1,14 +1,5 @@
-// Can come from external file I guess?
 let listOfTrials = 
         [
-          {
-            'source': "https://archive.org/download/CEP146/CEP146_512kb.mp4",
-            'type'  : "text"
-          },
-          {
-            'source': "https://archive.org/download/SF121/SF121_512kb.mp4",
-            'type'  : "text"
-          },
           {
             'source': "https://archive.org/download/CEP146/CEP146_512kb.mp4",
             'type'  : "grid"
@@ -72,10 +63,10 @@ function setupCanvas()
 function reportXY()
 {
   // Reporting XY position in canvas.
-  if (isDrawing)
+  if (isDrawing && !player.paused)
   {
-    let vidTime = document.getElementById('player').currentTime;
-    let datum = {'t': vidTime, 'x': reportX, 'y': reportY};
+    let vidTime = Math.round(document.getElementById('player').currentTime * 1000);
+    let datum = {'timeMs': vidTime, 'valence': reportX, 'arousal': reportY};
 
     console.log('Datum registered:')
     console.log(datum);
