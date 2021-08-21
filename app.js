@@ -9,18 +9,17 @@ const fs = require('fs');
 
 app.use(express.static('public'));
 
-
-function saveData(data) {
+function saveData(data, filename) {
     let dataString = JSON.stringify(data);
-    filename = 'test.json';
     fs.writeFileSync("data/" + filename, dataString);
 }
 
 io.on('connection', (socket) => {
     console.log('a user connected');
-    socket.on('new-datum', (datum) => {
+    socket.on('new-datum', (datum, filename) => {
+        console.log(`Saving ${filename}...`);
         console.log(datum);
-        saveData(datum);
+        saveData(datum, filename);
     })
 })
 

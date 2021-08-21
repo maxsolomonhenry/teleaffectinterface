@@ -212,7 +212,7 @@ function nextTrial ()
 
     let PID = subjectData[0]["PID"];
     let dateTime = getFormattedDate();
-    let filename = PID + "__" + dateTime + ".json";
+    let filename = "PID_" + PID + "__" + dateTime + ".json";
     socket.emit('new-datum', subjectData, filename);
 
   }
@@ -303,7 +303,7 @@ function getTrialType()
 
 function getFormattedDate() {
   var date = new Date();
-  var str = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "__" + date.getHours() + "-" + date.getMinutes() + "-" + date.getSeconds();
+  var str = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "_" + date.getHours() + "h" + date.getMinutes() + "-" + date.getSeconds();
 
   return str;
 }
