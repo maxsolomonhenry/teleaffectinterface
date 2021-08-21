@@ -166,8 +166,6 @@ function nextButton()
     console.log("Total data so far:");
     console.log(subjectData);
 
-    socket.emit('new-datum', datum);
-
     // Move on.
     nextTrial();
   }
@@ -211,6 +209,12 @@ function nextTrial ()
     // Debugging.
     console.log("Final data:");
     console.log(subjectData);
+
+    let PID = subjectData[0]["PID"];
+    let dateTime = getFormattedDate();
+    let filename = PID + "__" + dateTime + ".json";
+    socket.emit('new-datum', subjectData, filename);
+
   }
   else 
   {
@@ -295,4 +299,11 @@ function getTrialVideo()
 function getTrialType()
 {
   return listOfTrials[trialIndex]["type"];
+}
+
+function getFormattedDate() {
+  var date = new Date();
+  var str = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "__" + date.getHours() + "-" + date.getMinutes() + "-" + date.getSeconds();
+
+  return str;
 }
