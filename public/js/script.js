@@ -1,3 +1,5 @@
+var socket = io();
+
 let listOfTrials = 
         [
           {
@@ -163,6 +165,8 @@ function nextButton()
     // Debugging.
     console.log("Total data so far:");
     console.log(subjectData);
+
+    socket.emit('new-datum', datum);
 
     // Move on.
     nextTrial();
