@@ -158,6 +158,10 @@ function nextButton()
 
     if (time_series.length > 0){
       datum["time_series"] = time_series;
+      
+      // Reset crosshair for next trial.
+      drawX = canvasWidth/2;
+      drawY = canvasHeight/2
     }
 
     subjectData.push(datum);
