@@ -277,7 +277,7 @@ function updateLayout(trialType)
     canvasHolder.style.display = "block";
     pressSpace.style.display = "block";
 
-    prompt.textContent = "Click and point on the canvas to indicate how you feel."
+    prompt.textContent = "Click and point on the canvas to indicate how the audience feels."
   }
   else
   {

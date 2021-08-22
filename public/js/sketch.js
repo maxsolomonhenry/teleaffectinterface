@@ -62,6 +62,6 @@ function draw()
   text('unpleasant', 15, canvasHeight/2);
   text('pleasant', 5/6 * canvasWidth, canvasHeight/2);
 
-  text('deactivated', 53/128*canvasWidth, canvasHeight - 15);
-  text('activated', 7/16 * canvasWidth, 20);
+  text('low arousal', 53/128*canvasWidth, canvasHeight - 15);
+  text('high arousal', 7/16 * canvasWidth, 20);
 }
