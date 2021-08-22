@@ -125,6 +125,9 @@ function playPause()
 
 function nextButton() 
 {
+  // Pause video.
+  let player = document.getElementById("player");
+  player.pause();  
 
   // De-focus the `next` button.
   thisEffingButton = document.getElementById("the-button");
