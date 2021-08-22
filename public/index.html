@@ -1,46 +1,17 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <title>Teleconferencing Affect Experiment</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/tags.css">
-  <script src="/socket.io/socket.io.js"></script>
-  <script async type="text/javascript" src="js/script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
-  <script src="js/sketch.js"></script>
-  <script src="js/tags.js" defer></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="css/welcome.css">
+    <script src="js/welcome.js"></script>
 </head>
-
 <body>
-
-  <div class="wrapper">
-
-    <div class="screen">
-
-      <div></div> 
-      <div><video id="player" src="" controls></video></div>
-      <div class="bigprompt" id="press-space"><p>Press <b>space</b> to start/stop video.</p></div>
-
+    <div id="main">
+        <div id="prompt">Welcome! Please click the next button to continue.</div>
+        <button onclick="nextButton()">Next</button>
     </div>
-
-    <div class="input">
-
-      <div id="prompt-holder"><span id="prompt"></span></div>
-
-      <div>
-
-        <div id="canvas-holder" onmousemove="reportXY()"></div>
-        <div id="tag-container"><input id="textin"/></div>
-        <div id="id-container"><input type="text" id="id-text"></div>
-      </div>
-
-      <div><button type="submit" class="btn" id="the-button" onclick="nextButton()">Next</button></div>
-
-    </div>
-
-  </div>
-
 </body>
 </html>
