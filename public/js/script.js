@@ -67,6 +67,8 @@ function setupCanvas()
 
 function reportXY()
 {
+  let player = document.getElementById("player");
+
   // Reporting XY position in canvas.
   if (isDrawing && !player.paused)
   {
