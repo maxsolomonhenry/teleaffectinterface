@@ -1,6 +1,14 @@
 const prompts = [
     `<p>In this experiment you will be registering emotion on two scales:</p><p><b>arousal</b> and <b>pleasantness</b>.</p>`,
 
+    `<p>To begin video playback, press the spacebar. </p>
+    
+    <p>As you watch the video, record your response by clicking and dragging the <b>red cursor</b> in the response box.</p>
+
+    <p>We will track your response over time, throughout the video.</p>
+    
+    <img src="./img/cursor.png" style="width:75%;height:75%" alt="Showing the cursor">`,
+
     `<p>
     <h1>Arousal</h1>
     </p>
@@ -19,7 +27,9 @@ const prompts = [
 
     <p>
         You will rate someone's arousal using the up/down dimension of the reponse grid.
-    </p>`,
+    </p>
+    
+    <img src="./img/arousal.png" style="width:75%;height:75%" alt="Arousal dimension">`,
 
     `<p>
     <h1>Pleasantness</h1>
@@ -39,9 +49,15 @@ const prompts = [
 
     <p>
         You will rate someone's pleasantness using the left/right dimension of the response grid.
-    </p>`,
+    </p>
+    
+    <img src="./img/valence.png" style="width:75%;height:75%" alt="Pleasantness dimension">`,
 
-    `<p>The next screen will bring you to the experiment.</p><p>Click the 'next' button to move through trials.</p>`
+    `<p>The next screen will bring you to the experiment.</p>
+
+    <p>Each video will stop automatically once it has reached the end.</p>
+    
+    <p>Click the <b>next</b> button to move through trials.</p>`
 ];
 
 export default prompts;
