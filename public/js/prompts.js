@@ -12,7 +12,7 @@ const prompts = [
     `<p>
     <h1>Arousal</h1>
     </p>
-
+    <img src="img/arousal_mani.png" width="100%">
     <p>
         This scale relates to how <b>awake</b>, <b>stimulated</b>, or <b>stirred up</b> someone is.
     </p>
@@ -35,6 +35,8 @@ const prompts = [
     <h1>Pleasantness</h1>
     </p>
 
+    <img src="img/valence_mani.png" width="100%">
+    
     <p> 
         This scale relates to how <b>pleasurable</b> an emotion is.
     </p>
@@ -57,7 +59,9 @@ const prompts = [
 
     <p>Each video will stop automatically once it has reached the end.</p>
     
-    <p>Click the <b>next</b> button to move through trials.</p>`
+    <p>Click the <b>next</b> button to move through trials.</p>
+    
+    <p>In the following trials, please rate how you think the <b>audience</b> feels. If there is no audience visualization present, rate how you think a hypothetical audience will feel. There is a fair amount of repetition in this experiment, that is normal!</p>`
 ];
 
 export default prompts;

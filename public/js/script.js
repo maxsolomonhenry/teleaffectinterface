@@ -1,21 +1,82 @@
 var socket = io();
 
+// console.log("pid: ",subjectData[0]["PID"])
+let session = "S3"
 let listOfTrials = 
         [
           {
             'type'  : "id"
           },
           {
-            'source': "https://archive.org/download/CEP146/CEP146_512kb.mp4",
+            'source': "stimuli/"+session+"/"+session+"-SlideshowA-Viz0.mp4",
             'type'  : "grid"
           },
           {
-            'source': "https://archive.org/download/SF121/SF121_512kb.mp4",
+            'source': "stimuli/"+session+"/"+session+"-SlideshowA-VizA.mp4",
             'type'  : "grid"
-          }
+          },
+          {
+            'source': "stimuli/"+session+"/"+session+"-SlideshowA-VizB.mp4",
+            'type': "grid"
+          },
+          {
+            'source': "stimuli/"+session+"/"+session+"-SlideshowB-Viz0.mp4",
+            'type': "grid"
+          },
+          {
+            'source': "stimuli/"+session+"/"+session+"-SlideshowB-VizA.mp4",
+            'type': "grid"
+          },
+          {
+            'source': "stimuli/"+session+"/"+session+"-SlideshowB-VizB.mp4",
+            'type': "grid"
+          },
         ]
 
+// hacky but it works for the interest of time
+function modifyListOfTrials(session){
 
+  listOfTrials =
+    [
+      {
+        'type': "id"
+      },
+      {
+        'source': "stimuli/" + session + "/" + session + "-SlideshowA-Viz0.mp4",
+        'type': "grid"
+      },
+      {
+        'source': "stimuli/" + session + "/" + session + "-SlideshowA-VizA.mp4",
+        'type': "grid"
+      },
+      {
+        'source': "stimuli/" + session + "/" + session + "-SlideshowA-VizB.mp4",
+        'type': "grid"
+      },
+      {
+        'source': "stimuli/" + session + "/" + session + "-SlideshowB-Viz0.mp4",
+        'type': "grid"
+      },
+      {
+        'source': "stimuli/" + session + "/" + session + "-SlideshowB-VizA.mp4",
+        'type': "grid"
+      },
+      {
+        'source': "stimuli/" + session + "/" + session + "-SlideshowB-VizB.mp4",
+        'type': "grid"
+      },
+    ]
+}
+
+function simpleSanityCheckPID(pid){
+  if(pid.match(/[a-zA-Z ]/)){
+    alert("error: alphabetical character in pid.\nPlease just write the number like '42' not 'P42'")
+    return(true)
+  }
+  else{
+    return(false)
+  }
+}
 
 let canvasHolder;
 let trialIndex;
@@ -136,6 +197,8 @@ function nextButton()
   thisEffingButton.blur();
   // player.focus();
 
+  
+
   // Collects input in "subjectData" variable.
 
   let datum = {"condition" : getVideo()}
@@ -149,8 +212,15 @@ function nextButton()
     if (idtxt.value != "") 
     {
       datum["PID"] = idtxt.value;
+      if(simpleSanityCheckPID(datum["PID"])){
+        window.location.reload();
+      }
       idtxt.value = "";
       datum["condition"] = "ID_FIELD";
+      if(datum["PID"] % 2 == 0){
+        modifyListOfTrials("S4")
+      }
+      shuffleArray(listOfTrials)
     }
 
     if (tags){
@@ -223,6 +293,8 @@ function nextTrial ()
     let dateTime = getFormattedDate();
     let filename = "PID_" + PID + "__" + dateTime + ".json";
     socket.emit('new-datum', subjectData, filename);
+
+    window.location.href = "complete.html"
 
   }
   else 
@@ -315,4 +387,22 @@ function getFormattedDate() {
   var str = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "_" + date.getHours() + "h" + date.getMinutes() + "-" + date.getSeconds();
 
   return str;
+}
+
+function shuffleArray(array) {
+  var currentIndex = array.length, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+  console.log("shuffled array: ",array)
+  return array;
 }
