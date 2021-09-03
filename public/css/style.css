@@ -66,3 +66,13 @@
     #canvas-holder{
       text-align: center;
     }
+
+#progress{
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  font-size: large;
+  background-color: rgb(100, 100, 100);
+  color:#eee;
+  padding: 30px;
+}

@@ -95,6 +95,10 @@ window.onload = () =>
   setupSpacebar();
 
   setupTrial();
+
+  // inits progress tracking
+  document.getElementById("currentIdx").innerHTML = 0
+  document.getElementById("playlistLen").innerHTML = listOfTrials.length
 }
 
 function initGlobals()
@@ -212,11 +216,19 @@ function nextButton()
     if (idtxt.value != "") 
     {
       datum["PID"] = idtxt.value;
+
+      // checks if someone accidentally put "P69" instead of "69"
+      // if they incorrectly wrote a letter, refresh the window.
       if(simpleSanityCheckPID(datum["PID"])){
+        console.log("reload event!")
         window.location.reload();
       }
+
       idtxt.value = "";
       datum["condition"] = "ID_FIELD";
+
+      // serves two different playlists depending on if
+      // the participant has an odd or even pid
       if(datum["PID"] % 2 == 0){
         modifyListOfTrials("S4")
       }
@@ -280,6 +292,8 @@ function clearRecordedInputs()
 function nextTrial ()
 {
   trialIndex++;
+  document.getElementById("currentIdx").innerHTML = trialIndex
+
 
   if (trialIndex === listOfTrials.length)
   {
