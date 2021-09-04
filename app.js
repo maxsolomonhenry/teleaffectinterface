@@ -8,8 +8,10 @@ const io = new Server(server);
 
 const fs = require('fs');
 
-app.use(subdomain('teleaffect_experiment',express.static('public')));
-console.log("running v0.2")
+// app.use(express.static('public'));
+app.use('/', express.static(__dirname + '/public'));
+app.use('/teleaffect_experiment', express.static(__dirname + '/public'));
+console.log("running v0.3")
 function saveData(data, filename) {
     let dataString = JSON.stringify(data);
     fs.writeFileSync("data/" + filename, dataString);
