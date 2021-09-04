@@ -1,5 +1,10 @@
 // var socket = io();
-var socket = io.connect("/", { path: "/teleaffect_study/socket.io" })
+var socket = io.connect("/", { path: "/teleaffect_experiment/socket.io" })
+
+// var socket = io.connect('https://unicorn.cim.mcgill.ca/', {
+//                          path: "/teleaffect_study/socket.io"
+//                         });
+
 // console.log("pid: ",subjectData[0]["PID"])
 let session = "S3"
 let listOfTrials = 

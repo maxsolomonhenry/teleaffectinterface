@@ -11,11 +11,16 @@ services:
             - "traefik.http.routers.teleaffect-experiment.rule=Host(`unicorn.cim.mcgill.ca`) && PathPrefix(`/teleaffect_experiment`)"
             # Get HTTPS support through traefik
             - "traefik.http.routers.teleaffect-experiment.tls.certresolver=myresolver"
+            
+            #subdirectory middleware
+            - "traefik.http.routers.teleaffect-experiment.middlewares=teleaffect-experiment@docker"
+            - "traefik.http.middlewares.teleaffect-experiment.stripprefix.prefixes=/teleaffect_experiment"
+
             # Network is called "traefik" on unicorn, "wiki_js" on bach
             - "traefik.docker.network=traefik"
         volumes:
             # Bind mount for a file
-            - ".:/usr/app"
+            - "./data:/usr/src/app/data"
         networks:
             - default
             - traefik
