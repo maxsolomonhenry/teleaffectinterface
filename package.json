@@ -4,7 +4,8 @@
   "description": "Html interface for teleaffect experiment. Exciting stuff. ``` . ├── LICENSE ├── README.md ├── css │   ├── style.css │   └── tags.css ├── index.html └── js     ├── script.js     ├── sketch.js     └── tags.js",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/maxsolomonhenry/teleaffectinterface#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "express-subdomain": "^1.0.5",
     "fs": "0.0.1-security",
     "socket.io": "^4.1.3"
   }
