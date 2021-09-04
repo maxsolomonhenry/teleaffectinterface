@@ -115,6 +115,8 @@ function modifyListOfTrials(session){
     ]
 }
 
+
+
 function simpleSanityCheckPID(pid){
   if(pid.match(/[a-zA-Z ]/)){
     alert("error: alphabetical character in pid.\nPlease just write the number like '42' not 'P42'")
@@ -146,6 +148,12 @@ window.onload = () =>
   // inits progress tracking
   document.getElementById("currentIdx").innerHTML = 0
   document.getElementById("playlistLen").innerHTML = listOfTrials.length
+  
+  // QOL improvements for player controls in combination with space play/pausing
+  const player = document.getElementById("player");
+  player.onmouseenter = () => {player.setAttribute("controls", "controls")}
+  player.onmouseleave = () => { player.removeAttribute("controls")}
+
 }
 
 function initGlobals()
@@ -221,6 +229,8 @@ function setupSpacebar()
 function playPause()
 {
   let player = document.getElementById("player");
+  player.removeAttribute("controls")
+  
   if (player.paused)
   {
     player.play();
@@ -231,7 +241,15 @@ function playPause()
   }
 }
 
-
+function toggleControls(vid){
+  // vid = a Video element
+  if(vid.hasAttribute("controls")){
+    vid.removeAttribute("controls");
+  }
+  else{
+    vid.setAttribute("controls", "controls")
+  }
+}
 
 
 
@@ -242,7 +260,7 @@ function nextButton()
   // Pause video.
   let player = document.getElementById("player");
   player.pause();  
-
+  document.getElementById("player").setAttribute("controls", "controls")
   // De-focus the `next` button.
   thisEffingButton = document.getElementById("the-button");
   thisEffingButton.blur();
@@ -338,30 +356,30 @@ function clearRecordedInputs()
 
 function nextTrial ()
 {
-  trialIndex++;
-  document.getElementById("currentIdx").innerHTML = trialIndex
-
-
+  
   if (trialIndex === listOfTrials.length)
   {
     alert("You have finished the experiment. Thank you!");
-
+    
     // Debugging.
     console.log("Final data:");
     console.log(subjectData);
-
+    
     let PID = subjectData[0]["PID"];
     let dateTime = getFormattedDate();
     let filename = "PID_" + PID + "__" + dateTime + ".json";
     socket.emit('new-datum', subjectData, filename);
-
+    
     window.location.href = "complete.html"
-
+    
   }
   else 
   {
+    document.getElementById("currentIdx").innerHTML = (trialIndex+1)
     setupTrial();
   };
+
+  trialIndex++;
 }
 
 function setupTrial()
