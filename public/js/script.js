@@ -1,5 +1,5 @@
-var socket = io();
-
+// var socket = io();
+var socket = io.connect("/", { path: "/teleaffect_study/socket.io" })
 // console.log("pid: ",subjectData[0]["PID"])
 let session = "S3"
 let listOfTrials = 
