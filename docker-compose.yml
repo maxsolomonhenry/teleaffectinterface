@@ -1,0 +1,36 @@
+version: "3"
+services:
+    teleaffect-experiment:
+        build:
+            context: . 
+            dockerfile: Dockerfile
+        image: teleaffect-experiment:latest
+        labels: # these advertise it to traefik
+            - "traefik.enable=true"
+            # Set up routing on a path of a domain
+            - "traefik.http.routers.teleaffect-experiment.rule=Host(`unicorn.cim.mcgill.ca`) && PathPrefix(`/teleaffect_experiment`)"
+            # Get HTTPS support through traefik
+            - "traefik.http.routers.teleaffect-experiment.tls.certresolver=myresolver"
+            
+            #subdirectory middleware
+            - "traefik.http.routers.teleaffect-experiment.middlewares=teleaffect-experiment@docker"
+            - "traefik.http.middlewares.teleaffect-experiment.stripprefix.prefixes=/teleaffect_experiment"
+
+            # Network is called "traefik" on unicorn, "wiki_js" on bach
+            - "traefik.docker.network=traefik"
+        volumes:
+            # Bind mount for a file
+            - "./data:/usr/src/app/data"
+        networks:
+            - default
+            - traefik
+    
+# Define networks and named volumes
+volumes:
+    my-app-volume:
+    
+networks:
+    # Traefik already is defined elsewhere so we just need to say how to look for it
+    traefik:
+        external: true
+        name: traefik
