@@ -5,7 +5,28 @@ let session = "S3"
 let listOfTrials = 
         [
           {
-            'type'  : "id"
+            'source': "stimuli/"+session+"/"+session+"-SlideshowA-Viz0.mp4",
+            'type'  : "grid"
+          },
+          {
+            'source': "stimuli/"+session+"/"+session+"-SlideshowA-VizA.mp4",
+            'type'  : "grid"
+          },
+          {
+            'source': "stimuli/"+session+"/"+session+"-SlideshowA-VizB.mp4",
+            'type': "grid"
+          },
+          {
+            'source': "stimuli/"+session+"/"+session+"-SlideshowB-Viz0.mp4",
+            'type': "grid"
+          },
+          {
+            'source': "stimuli/"+session+"/"+session+"-SlideshowB-VizA.mp4",
+            'type': "grid"
+          },
+          {
+            'source': "stimuli/"+session+"/"+session+"-SlideshowB-VizB.mp4",
+            'type': "grid"
           },
           {
             'source': "stimuli/"+session+"/"+session+"-SlideshowA-Viz0.mp4",
@@ -39,9 +60,6 @@ function modifyListOfTrials(session){
   listOfTrials =
     [
       {
-        'type': "id"
-      },
-      {
         'source': "stimuli/" + session + "/" + session + "-SlideshowA-Viz0.mp4",
         'type': "grid"
       },
@@ -63,6 +81,30 @@ function modifyListOfTrials(session){
       },
       {
         'source': "stimuli/" + session + "/" + session + "-SlideshowB-VizB.mp4",
+        'type': "grid"
+      },
+      {
+        'source': "stimuli/"+session+"/"+session+"-SlideshowA-Viz0.mp4",
+        'type'  : "grid"
+      },
+      {
+        'source': "stimuli/"+session+"/"+session+"-SlideshowA-VizA.mp4",
+        'type'  : "grid"
+      },
+      {
+        'source': "stimuli/"+session+"/"+session+"-SlideshowA-VizB.mp4",
+        'type': "grid"
+      },
+      {
+        'source': "stimuli/"+session+"/"+session+"-SlideshowB-Viz0.mp4",
+        'type': "grid"
+      },
+      {
+        'source': "stimuli/"+session+"/"+session+"-SlideshowB-VizA.mp4",
+        'type': "grid"
+      },
+      {
+        'source': "stimuli/"+session+"/"+session+"-SlideshowB-VizB.mp4",
         'type': "grid"
       },
     ]
@@ -391,9 +433,17 @@ function getTrialVideo()
   return listOfTrials[trialIndex]["source"];
 }
 
+let hasStarted = false;
 function getTrialType()
 {
-  return listOfTrials[trialIndex]["type"];
+  if (!hasStarted)
+  {
+    hasStarted = true;
+    return "id";
+  } else
+  {
+    return listOfTrials[trialIndex]["type"];
+  }
 }
 
 function getFormattedDate() {
