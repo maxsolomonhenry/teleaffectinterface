@@ -42,11 +42,16 @@ function draw()
   {
     drawX = Math.max(Math.min(canvasWidth, mouseX), 0);
     drawY = Math.max(Math.min(canvasHeight, mouseY), 0);
+
+    // If mouse is clicked, draw red crosshair.
+    stroke('red');
+    strokeWeight(2);
+    line(drawX - crossSize, drawY, drawX + crossSize, drawY);
+    line(drawX, drawY - crossSize, drawX, drawY + crossSize);
   }
 
-
-  // Draw crosshair.
-  stroke('red');
+  // If mouse is _not_ clicked, draw white crosshair.
+  stroke('mintcream');
   strokeWeight(2);
   line(drawX - crossSize, drawY, drawX + crossSize, drawY);
   line(drawX, drawY - crossSize, drawX, drawY + crossSize);
