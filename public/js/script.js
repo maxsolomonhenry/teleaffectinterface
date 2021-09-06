@@ -6,6 +6,9 @@ var socket = io.connect("/", { path: "/teleaffect_experiment/socket.io" })
 //                         });
 
 // console.log("pid: ",subjectData[0]["PID"])
+
+
+
 let session = "S3"
 let listOfTrials = 
         [
@@ -154,6 +157,25 @@ window.onload = () =>
   player.onmouseenter = () => {player.setAttribute("controls", "controls")}
   player.onmouseleave = () => { player.removeAttribute("controls")}
 
+  // display feedback that logging is indeed happening and it is over time
+  player.onplay = () => {
+    playFeedback();
+  }
+  player.onpause = () => {
+    pauseFeedback();
+  }
+
+}
+
+
+function pauseFeedback(){
+  document.getElementById("recording").style.display = "none"
+  document.getElementById("stopped").style.display = "block"
+}
+
+function playFeedback(){
+  document.getElementById("recording").style.display = "block"
+  document.getElementById("stopped").style.display = "none"
 }
 
 function initGlobals()
@@ -173,14 +195,14 @@ function setupCanvas()
   {
     isDrawing = true;
     canvasHolder.style.cursor = 'none';
-    document.getElementById("input_rec").style.display="block"
+    document.getElementById("input_rec").style.visibility="visible"
     reportXY();
   });
 
   canvasHolder.addEventListener('mouseup', () => 
   {
     canvasHolder.style.cursor = 'default';
-    document.getElementById("input_rec").style.display = "none"
+    document.getElementById("input_rec").style.visibility = "hidden"
     isDrawing = false;
   });
 }
@@ -236,16 +258,12 @@ function playPause()
   if (player.paused)
   {
     player.play();
-    document.getElementById("recording").style.display = "block"
-    document.getElementById("stopped").style.display = "none"
-    // !!! recording sign
+
   }
   else
   {
     player.pause();
-    document.getElementById("recording").style.display = "none"
-    document.getElementById("stopped").style.display = "block"
-    // !!! stop sign
+
   }
 }
 
@@ -276,7 +294,8 @@ function nextButton()
   thisEffingButton = document.getElementById("the-button");
   thisEffingButton.blur();
   // player.focus();
-
+  pauseFeedback();
+  
   
 
   // Collects input in "subjectData" variable.
@@ -332,7 +351,7 @@ function nextButton()
     // Debugging.
     console.log("Total data so far:");
     console.log(subjectData);
-
+    
     // Move on.
     nextTrial();
   }
@@ -449,7 +468,7 @@ function updateLayout(trialType)
     canvasHolder.style.display = "block";
     pressSpace.style.display = "block";
 
-    prompt.textContent = "Click and point on the canvas to indicate how the audience feels."
+    prompt.textContent = "Drag the crosshair on the canvas over time to indicate how the audience feels."
   }
   else
   {
