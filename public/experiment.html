@@ -16,9 +16,16 @@
 </head>
 
 <body>
-  version 0.6
+  version 0.7
   <div id="progress">
     progress: <span id="currentIdx">?</span>/<span id="playlistLen">?</span>
+  </div>
+  <div id="recording_prompt">
+    <span id="recording" style="display: none;">
+      <span class="animate-flicker">🔴</span> recording response</span>
+    <span id="stopped">⬛ stopped</span>
+    <br>
+    <span id="input_rec">✔️ input recieved</span>
   </div>
   <div class="wrapper">
 

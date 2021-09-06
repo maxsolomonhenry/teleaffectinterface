@@ -169,16 +169,18 @@ function initGlobals()
 function setupCanvas()
 {
   canvasHolder = document.getElementById('canvas-holder');
-  canvasHolder.addEventListener('mousedown', e => 
+  canvasHolder.addEventListener('mousedown', () => 
   {
     isDrawing = true;
     canvasHolder.style.cursor = 'none';
+    document.getElementById("input_rec").style.display="block"
     reportXY();
   });
 
-  canvasHolder.addEventListener('mouseup', e => 
+  canvasHolder.addEventListener('mouseup', () => 
   {
     canvasHolder.style.cursor = 'default';
+    document.getElementById("input_rec").style.display = "none"
     isDrawing = false;
   });
 }
@@ -234,22 +236,31 @@ function playPause()
   if (player.paused)
   {
     player.play();
+    document.getElementById("recording").style.display = "block"
+    document.getElementById("stopped").style.display = "none"
+    // !!! recording sign
   }
   else
   {
     player.pause();
+    document.getElementById("recording").style.display = "none"
+    document.getElementById("stopped").style.display = "block"
+    // !!! stop sign
   }
 }
 
-function toggleControls(vid){
-  // vid = a Video element
-  if(vid.hasAttribute("controls")){
-    vid.removeAttribute("controls");
-  }
-  else{
-    vid.setAttribute("controls", "controls")
-  }
-}
+
+
+// DEPRECIATED
+// function toggleControls(vid){
+//   // vid = a Video element
+//   if(vid.hasAttribute("controls")){
+//     vid.removeAttribute("controls");
+//   }
+//   else{
+//     vid.setAttribute("controls", "controls")
+//   }
+// }
 
 
 

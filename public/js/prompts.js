@@ -5,7 +5,7 @@ const prompts = [
     
     <p>As you watch the video, we will record your response as you click and drag the <b>red cursor</b> in the response box. As you watch the video, the cursor is being tracked over time. Please click and drag throughout.</p>
 ​
-	<p><b>NOTE: </b>We are interested in your response as it changes over time. Please continue to click and drag throughout the video.</p>
+	<p><b>NOTE: </b> We are interested in your response <b>as it changes over time</b>. Please continue to click and drag throughout the video.</p>
 ​
     <img src="./img/cursor.png" style="width:75%;height:75%" alt="Showing the cursor">`,
 
