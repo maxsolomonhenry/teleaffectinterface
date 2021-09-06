@@ -55,13 +55,17 @@ const prompts = [
     
     <img src="./img/valence.png" style="width:75%;height:75%" alt="Pleasantness dimension">`,
 
+    `<b>Tutorial</b> 
+    <br>with those dimensions in mind, here is a handy tutorial video on how to complete the experiment
+     <video width="100%" controls>
+        <source src="../vid/tutorial.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video> `,
+
     `<p>The next screen will bring you to the experiment.</p>
-​
-    <p>Each video will stop automatically once it has reached the end.</p>
+    <p>Remember: you must rate the emotions of the audience <b>over time</b> and <b>not statically</b>. A video will have many different emotions contained within it. We are logging how your emotion ratings <b>change over time</b>, and thus are recording the <b>time varying movements of the crosshair</b> and <b>not</b> a singular value, so do not wait until the end of the video to make a rating.</p>
     
-    <p>Click the <b>next</b> button to move through trials.</p>
-    
-    <p>In the following trials, please rate how you think the <b>audience</b> feels. If there is no audience visualization present, rate how you think a hypothetical audience will feel. There is a fair amount of repetition in this experiment, that is normal!</p>`
+    <p>As mentioned, please rate how you think the <b>audience</b> feels. <b>If there is no audience visualization present, rate how you think a hypothetical audience will feel</b>. There is a fair amount of repetition in this experiment, that is normal!</p>`
 ];
 
 export default prompts;
