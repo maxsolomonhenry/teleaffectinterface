@@ -368,9 +368,10 @@ function nextTrial ()
     let PID = subjectData[0]["PID"];
     let dateTime = getFormattedDate();
     let filename = "PID_" + PID + "__" + dateTime + ".json";
+    sessionStorage.setItem("PID", PID)
     socket.emit('new-datum', subjectData, filename);
     
-    window.location.href = "complete.html"
+    window.location.href = "feedback.html"
     
   }
   else 

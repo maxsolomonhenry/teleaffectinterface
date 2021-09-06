@@ -9,9 +9,24 @@
     <script type="module" src="js/welcome.js"></script>
 </head>
 <body>
+    <div id="maintenanceMsg">
+        Closed for maintenance... will be back online at September 6th 1:00AM ET
+    </div>
     <div id="main">
         <div id="prompt">Welcome! Please click the next button to continue.</div>
         <button id="button">Next</button>
     </div>
+
+    <script>
+        const maintenance = true;
+        if(maintenance){
+            document.getElementById("maintenanceMsg").style.display = "block";
+            document.getElementById("main").style.display = "none";
+        }
+        else{
+            document.getElementById("maintenanceMsg").style.display = "none";
+            document.getElementById("main").style.display = "block";
+        }
+    </script>
 </body>
 </html>

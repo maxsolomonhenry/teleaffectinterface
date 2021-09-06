@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/welcome.css">
+    <script src="/teleaffect_experiment/socket.io/socket.io.js"></script>
+
+    <title>Feedback</title>
+
+</head>
+<body>
+    <div id="main">
+        <div id="prompt">
+            <p>
+                Were there emotional aspects of the videos that you were unable to sufficiently capture with the supplied pleasantness/arousal grid? (i.e. did you see emotions that couldn't be expressed through this 2D grid?)
+                <br>
+                If so, can you describe what they were and the situation that occured?
+            </p>
+            <p>
+                Leave the textfield blank if the 2D grid was able to sufficiently capture all the emotions for you.
+            </p>
+
+        </div>
+        <p>
+            <textarea id="otherEmos" rows="4" cols="50"></textarea>
+        </p>
+        <p>
+            <input type="submit" value="Submit" id="submitBtn">
+        </p>
+
+    </div>
+
+    <script>
+        const socket = io.connect("/", { path: "/teleaffect_experiment/socket.io" })
+        const submitBtn = document.getElementById('submitBtn');
+        const textArea = document.getElementById('otherEmos');
+
+        submitBtn.onclick = () => {
+            alert("feedback recorded!")
+            let fileName = sessionStorage.getItem("PID")+"-feedback.txt"
+            socket.emit('new-datum', textArea.value, fileName);
+            window.location.href = "complete.html"
+            
+        }
+    </script>
+</body>
+</html>

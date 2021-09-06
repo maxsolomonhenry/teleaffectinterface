@@ -2,3 +2,5 @@
 *.json
 node_modules
 *.webm
+data/*.json
+data/*.txt
