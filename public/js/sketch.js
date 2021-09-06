@@ -50,12 +50,6 @@ function draw()
     line(drawX, drawY - crossSize, drawX, drawY + crossSize);
   }
 
-  // If mouse is _not_ clicked, draw white crosshair.
-  stroke('mintcream');
-  strokeWeight(2);
-  line(drawX - crossSize, drawY, drawX + crossSize, drawY);
-  line(drawX, drawY - crossSize, drawX, drawY + crossSize);
-
   // Report centered, normalized values.
   reportX = ((mouseX - (canvasWidth / 2)) / canvasWidth) * 2;
   reportY = ((-(mouseY - (canvasHeight / 2))) / canvasHeight) * 2;
