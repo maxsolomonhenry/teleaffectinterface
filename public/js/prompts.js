@@ -3,10 +3,10 @@ const prompts = [
 
     `<p>To begin video playback, press the spacebar. </p>
     
-    <p>As you watch the video, record your response by clicking and dragging the <b>red cursor</b> in the response box.</p>
-
-    <p>We will track your response over time, throughout the video.</p>
-    
+    <p>As you watch the video, we will record your response as you click and drag the <b>red cursor</b> in the response box. As you watch the video, the cursor is being tracked over time. Please click and drag throughout.</p>
+​
+	<p><b>NOTE: </b>We are interested in your response as it changes over time. Please continue to click and drag throughout the video.</p>
+​
     <img src="./img/cursor.png" style="width:75%;height:75%" alt="Showing the cursor">`,
 
     `<p>
@@ -16,15 +16,15 @@ const prompts = [
     <p>
         This scale relates to how <b>awake</b>, <b>stimulated</b>, or <b>stirred up</b> someone is.
     </p>
-
+​
     <p>
         <b>High arousal</b> is when someone has extreme feelings, like excitement or furious anger 🤯😠🤩.
     </p>
-
+​
     <p>
         <b>Low arousal</b> is closer to sleep, when people are most relaxed, or even bored 😴😪.
     </p>
-
+​
     <p>
         You will rate someone's arousal using the up/down dimension of the reponse grid.
     </p>
@@ -34,21 +34,21 @@ const prompts = [
     `<p>
     <h1>Pleasantness</h1>
     </p>
-
+​
     <img src="img/valence_mani.png" width="100%">
     
     <p> 
         This scale relates to how <b>pleasurable</b> an emotion is.
     </p>
-
+​
     <p>
         <b>High pleasantness</b> is when someone has very nice, positive feelings like excitement, happiness, and joy 🤗😂😀.
     </p>
-
+​
     <p>
         <b>Low pleasantness</b> relates to highly negative emotions like anger or fear 😢😠😨.
     </p>
-
+​
     <p>
         You will rate someone's pleasantness using the left/right dimension of the response grid.
     </p>
@@ -56,7 +56,7 @@ const prompts = [
     <img src="./img/valence.png" style="width:75%;height:75%" alt="Pleasantness dimension">`,
 
     `<p>The next screen will bring you to the experiment.</p>
-
+​
     <p>Each video will stop automatically once it has reached the end.</p>
     
     <p>Click the <b>next</b> button to move through trials.</p>
