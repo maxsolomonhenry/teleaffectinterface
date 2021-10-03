@@ -3,5 +3,5 @@ echo pulling new data
 git fetch
 git pull 
 echo "resetting the server ;)"
-docker-compose up --build 
+docker-compose up --build -d 
 

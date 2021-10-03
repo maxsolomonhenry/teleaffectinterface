@@ -294,6 +294,7 @@ function nextButton()
   thisEffingButton = document.getElementById("the-button");
   thisEffingButton.blur();
   // player.focus();
+
   pauseFeedback();
   
   
@@ -385,8 +386,19 @@ function clearRecordedInputs()
 }
 
 function nextTrial ()
+
 {
   
+  let PID = subjectData[0]["PID"];
+  let dateTime = getFormattedDate();
+  let filename = "PID-" + PID + "_"+"trial-"+trialIndex+"_" +"datetime-"+ dateTime + ".json";
+  console.log(`filename: ${filename}`)
+  console.log("data:")
+  console.log(subjectData)
+  sessionStorage.setItem("PID", PID)
+  socket.emit('new-datum', subjectData, filename);
+
+
   if (trialIndex === listOfTrials.length)
   {
     alert("You have finished the experiment. Thank you!");
@@ -394,12 +406,6 @@ function nextTrial ()
     // Debugging.
     console.log("Final data:");
     console.log(subjectData);
-    
-    let PID = subjectData[0]["PID"];
-    let dateTime = getFormattedDate();
-    let filename = "PID_" + PID + "__" + dateTime + ".json";
-    sessionStorage.setItem("PID", PID)
-    socket.emit('new-datum', subjectData, filename);
     
     window.location.href = "feedback.html"
     
@@ -412,6 +418,7 @@ function nextTrial ()
 
   trialIndex++;
 }
+
 
 function setupTrial()
 {

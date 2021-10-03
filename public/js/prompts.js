@@ -58,7 +58,7 @@ const prompts = [
     `<b>Tutorial</b> 
     <br>with those dimensions in mind, here is a handy tutorial video on how to complete the experiment
      <video width="100%" controls>
-        <source src="../vid/tutorial.mp4" type="video/mp4">
+        <source src="./vid/tutorial.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video> `,
 

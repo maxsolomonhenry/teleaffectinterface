@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="maintenanceMsg">
-        Closed for maintenance... will be back online at September 6th 1:00PM ET
+	<marquee>Site under construction <img src="https://arthousedenver.com/wp-content/uploads/2019/05/under-construction-animated-gif-8.gif"></marquee>	
     </div>
     <div id="main">
         <div id="prompt">Welcome! Please click the next button to continue.</div>
@@ -18,7 +18,7 @@
     </div>
 
     <script>
-        const maintenance = false;
+        const maintenance = true;
         if(maintenance){
             document.getElementById("maintenanceMsg").style.display = "block";
             document.getElementById("main").style.display = "none";
