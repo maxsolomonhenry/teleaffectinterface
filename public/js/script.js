@@ -312,6 +312,7 @@ function nextButton()
     if (idtxt.value != "") 
     {
       datum["PID"] = idtxt.value;
+      sessionStorage.setItem("PID", PID)
 
       // checks if someone accidentally put "P69" instead of "69"
       // if they incorrectly wrote a letter, refresh the window.
@@ -331,13 +332,13 @@ function nextButton()
       shuffleArray(listOfTrials)
     }
 
-    if (tags){
-      // Collect whatever was in the input field. `input` from tags.js
-      tags.push(input.value);
+    // if (tags){
+    //   // Collect whatever was in the input field. `input` from tags.js
+    //   tags.push(input.value);
 
-      // Then add all tags to datum for this trial.
-      datum["tags"] = tags;
-    } 
+    //   // Then add all tags to datum for this trial.
+    //   datum["tags"] = tags;
+    // } 
 
     if (time_series.length > 0){
       datum["time_series"] = time_series;
@@ -347,12 +348,25 @@ function nextButton()
       drawY = canvasHeight/2
     }
 
-    subjectData.push(datum);
+    if(trialIndex != 0){
+      subjectData.push(datum);
+  
+      // Debugging.
+      console.log("Total data so far:");
+      console.log(subjectData);
+      
+  
+      // let PID = subjectData[0]["PID"];
+      let PID = sessionStorage.getItem("PID");
+      let dateTime = getFormattedDate();
+      let filename = "PID-" + PID + "_" + "trial-" + trialIndex + "_" + "datetime-" + dateTime + ".json";
+      console.log(`filename: ${filename}`)
+      console.log("data:")
+      // console.log(subjectData)
+      socket.emit('new-datum', datum, filename);
+    }
 
-    // Debugging.
-    console.log("Total data so far:");
-    console.log(subjectData);
-    
+
     // Move on.
     nextTrial();
   }
@@ -389,15 +403,7 @@ function nextTrial ()
 
 {
   
-  let PID = subjectData[0]["PID"];
-  let dateTime = getFormattedDate();
-  let filename = "PID-" + PID + "_"+"trial-"+trialIndex+"_" +"datetime-"+ dateTime + ".json";
-  console.log(`filename: ${filename}`)
-  console.log("data:")
-  console.log(subjectData)
-  sessionStorage.setItem("PID", PID)
-  socket.emit('new-datum', subjectData, filename);
-
+  
 
   if (trialIndex === listOfTrials.length)
   {
